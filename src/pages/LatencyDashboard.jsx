@@ -59,12 +59,28 @@ const getLogo = (name, color) => {
             </svg>
         );
     }
-    if (norm.includes('pubg')) {
+    if (norm.includes('youtube')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.388.507 9.388.507s7.516 0 9.387-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+        );
+    }
+    if (norm.includes('instagram')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+        );
+    }
+    if (norm.includes('globoplay') || norm.includes('globo')) {
         return (
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <path d="M12 8v8" />
-                <path d="M8 12h8" />
+                <rect x="2" y="3" width="20" height="15" rx="2" ry="2" />
+                <polyline points="8 21 12 18 16 21" />
+                <polygon points="10 8 15 11 10 14 10 8" fill={color} />
             </svg>
         );
     }

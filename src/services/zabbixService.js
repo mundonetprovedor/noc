@@ -221,13 +221,15 @@ class ZabbixService {
     async getLatencies() {
         const latencyTargets = [
             { name: "Google", icon: "google" },
+            { name: "YouTube", icon: "youtube" },
             { name: "CloudFire", icon: "cloudflare" },
             { name: "Facebook CDN", icon: "facebook" },
+            { name: "Instagram", icon: "instagram" },
             { name: "Akamai", icon: "server" },
             { name: "Netflix", icon: "monitor" },
             { name: "Paramount+", icon: "monitor" },
+            { name: "Globoplay", icon: "globoplay" },
             { name: "Twitch", icon: "monitor" },
-            { name: "PUBG", icon: "gamepad" },
             { name: "FREE FIRE", icon: "gamepad" }
         ];
 
