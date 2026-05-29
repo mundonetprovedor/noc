@@ -223,11 +223,10 @@ class ZabbixService {
         ];
 
         const items = await this.request('item.get', {
-            search: { key_: 'icmppingsec' },
-            output: ['itemid', 'name', 'lastvalue'],
+            search: { key_: 'icmpping' },
+            output: ['itemid', 'name', 'lastvalue', 'key_'],
             selectHosts: ['name'],
-            monitored: true,
-            filter: { value_type: 0 }
+            monitored: true
         });
 
         const latencies = [];
@@ -239,12 +238,25 @@ class ZabbixService {
             );
 
             if (matchedItems.length > 0) {
-                const valStr = matchedItems[0].lastvalue;
-                const ms = valStr ? parseFloat(valStr) * 1000 : 0;
+                const secItem = matchedItems.find(i => i.key_ && i.key_.includes('icmppingsec'));
+                const lossItem = matchedItems.find(i => i.key_ && i.key_.includes('icmppingloss'));
+                const pingItem = matchedItems.find(i => i.key_ && i.key_.includes('icmpping') && !i.key_.includes('sec') && !i.key_.includes('loss'));
+
+                const secVal = secItem ? parseFloat(secItem.lastvalue) : null;
+                const ms = secVal !== null && !isNaN(secVal) ? parseFloat((secVal * 1000).toFixed(2)) : 0;
+
+                const lossVal = lossItem ? parseFloat(lossItem.lastvalue) : 0;
+                const loss = !isNaN(lossVal) ? lossVal : 0;
+
+                const statusVal = pingItem ? parseInt(pingItem.lastvalue, 10) : 1;
+                const status = !isNaN(statusVal) ? statusVal : 1;
+
                 latencies.push({
                     name: target.name,
                     icon: target.icon,
-                    ms: parseFloat(ms.toFixed(1))
+                    ms: ms,
+                    loss: loss,
+                    status: status
                 });
             }
         }
