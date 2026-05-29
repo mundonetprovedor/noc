@@ -4,20 +4,82 @@ import {
     Activity, Globe, Server, MonitorPlay, Gamepad2, Zap, RefreshCw, EyeOff, BarChart2
 } from 'lucide-react';
 import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, Legend
 } from 'recharts';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const getIcon = (iconName, color) => {
-    switch (iconName) {
-        case 'google': return <Globe size={20} color={color} />;
-        case 'cloudflare': return <Server size={20} color={color} />;
-        case 'facebook': return <Globe size={20} color={color} />;
-        case 'server': return <Server size={20} color={color} />;
-        case 'monitor': return <MonitorPlay size={20} color={color} />;
-        case 'gamepad': return <Gamepad2 size={20} color={color} />;
-        default: return <Activity size={20} color={color} />;
+const getLogo = (name, color) => {
+    const norm = name.toLowerCase();
+    if (norm.includes('google')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 10.793-4.537 10.793-10.986 0-.746-.08-1.32-.176-1.785H12.24z"/>
+            </svg>
+        );
     }
+    if (norm.includes('cloudfire') || norm.includes('cloudflare')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+            </svg>
+        );
+    }
+    if (norm.includes('facebook') || norm.includes('meta')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+        );
+    }
+    if (norm.includes('akamai')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5h-2v-2h2v2zm0-4h-2V7h2v6.5z"/>
+            </svg>
+        );
+    }
+    if (norm.includes('netflix')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M5.598 1.467h3.195v16.14l9.61-16.14h3.195v21.066h-3.195V6.393l-9.61 16.14H5.598V1.467z"/>
+            </svg>
+        );
+    }
+    if (norm.includes('paramount')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M12 2L1 21h22L12 2zm0 4.5L18.5 18H5.5L12 6.5z M12 9a1 1 0 110 2 1 1 0 010-2z M8.5 12a1 1 0 110 2 1 1 0 010-2z M15.5 12a1 1 0 110 2 1 1 0 010-2z"/>
+            </svg>
+        );
+    }
+    if (norm.includes('twitch')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+            </svg>
+        );
+    }
+    if (norm.includes('pubg')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M12 8v8" />
+                <path d="M8 12h8" />
+            </svg>
+        );
+    }
+    if (norm.includes('free fire') || norm.includes('fire')) {
+        return (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill={color}>
+                <path d="M12 .587c1.785 2.27 3.518 4.316 4.743 6.945.748 1.603 1.257 3.327 1.257 5.12 0 4.103-3.327 7.43-7.43 7.43-4.103 0-7.43-3.327-7.43-7.43 0-2.822 1.34-5.267 3.473-6.666L8.03 12c0 2.21 1.79 4 4 4s4-1.79 4-4c0-2.73-1.89-5.46-4.03-7.413z"/>
+            </svg>
+        );
+    }
+    return (
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+    );
 };
 
 const themeConfig = {
@@ -245,10 +307,10 @@ const LatencyDashboard = () => {
                             >
                                 <div style={{ display: 'flex', justifyContent: 'between', alignItems: 'center', marginBottom: '1rem', width: '100%' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                                        <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px' }}>
-                                            {getIcon(host.icon, theme.lightText)}
+                                        <div style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            {getLogo(host.name, theme.lightText)}
                                         </div>
-                                        <h3 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#ffffff', letterSpacing: '0.5px' }}>
+                                        <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#ffffff', letterSpacing: '0.5px' }}>
                                             {host.name}
                                         </h3>
                                     </div>
@@ -267,7 +329,7 @@ const LatencyDashboard = () => {
                                 </div>
 
                                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '1rem' }}>
-                                    <span style={{ fontSize: '2.5rem', fontWeight: 900, color: theme.lightText, letterSpacing: '-1px', lineHeight: 1 }}>
+                                    <span style={{ fontSize: '2.8rem', fontWeight: 900, color: theme.lightText, letterSpacing: '-1.5px', lineHeight: 1 }}>
                                         {host.status === 0 || host.loss >= 100 ? 'OFFLINE' : `${host.ms.toFixed(2)}`}
                                     </span>
                                     {host.status !== 0 && host.loss < 100 && (
@@ -338,12 +400,13 @@ const LatencyDashboard = () => {
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={history} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.05)" />
-                                <XAxis dataKey="time" stroke="var(--text-secondary)" fontSize={11} />
-                                <YAxis stroke="var(--text-secondary)" fontSize={11} unit="ms" />
+                                <XAxis dataKey="time" stroke="var(--text-secondary)" fontSize={13} fontWeight={600} />
+                                <YAxis stroke="var(--text-secondary)" fontSize={13} fontWeight={600} unit="ms" />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#090d16', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px' }}
-                                    itemStyle={{ fontSize: '0.8rem' }}
+                                    itemStyle={{ fontSize: '0.95rem', fontWeight: 700 }}
                                 />
+                                <Legend wrapperStyle={{ paddingTop: '15px', fontSize: '0.95rem', fontWeight: 700 }} />
                                 {latencies.map((host, index) => {
                                     const colors = ['#00d2ff', '#b538ff', '#00ff9d', '#fce38a', '#ff4757', '#4285F4', '#E50914', '#00ff00', '#F38020'];
                                     const isHighlighted = selectedHost === null || selectedHost === host.name;
