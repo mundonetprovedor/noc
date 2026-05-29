@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Cloudflare DNS",
+    "ms": "42ms"
+  },
+  {
+    "name": "Globo / Regional",
+    "ms": "41ms"
+  },
+  {
+    "name": "Google / YouTube",
+    "ms": "40ms"
+  },
+  {
+    "name": "Meta (WA/FB/IG)",
+    "ms": "16ms"
+  },
+  {
+    "name": "Roblox Server",
+    "ms": "40ms"
+  },
+  {
+    "name": "Steam Content",
+    "ms": "16ms"
+  },
+  {
+    "name": "TikTok",
+    "ms": "17ms"
+  }
+]

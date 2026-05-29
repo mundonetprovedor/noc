@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "1772044975743",
+      "email": "supor@mundonet.com.br",
+      "password": "$2b$10$1942dUvpm9XN9Qj02LdJUemQxFedCgXJaH9NKXMDaaGRpy6J1PqMW",
+      "full_name": "supor",
+      "created_at": "2026-02-25T18:42:55.743Z"
+    },
+    {
+      "id": "1772045306844",
+      "email": "higorcesar997@gmail.com",
+      "password": "$2b$10$VT2Y7JVegwiNKHwCwcJz8OynghKK0qlQn4R/yxdrdDTel7dKsoxn.",
+      "full_name": "higorcesar997",
+      "created_at": "2026-02-25T18:48:26.844Z"
+    },
+    {
+      "id": "1772049955984",
+      "email": "test@example.com",
+      "password": "$2b$10$iBBxF3rTWj1.RC4uVMJwie6./n4GkyQWW06AintF.5QPcJeqrFCdq",
+      "full_name": "test",
+      "created_at": "2026-02-25T20:05:55.984Z"
+    }
+  ]
+}
