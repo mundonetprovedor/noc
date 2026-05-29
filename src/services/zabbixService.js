@@ -242,11 +242,34 @@ class ZabbixService {
 
         const latencies = [];
         for (const target of latencyTargets) {
-            const matchedItems = items.filter(i =>
-                (i.hosts && i.hosts.length > 0 && i.hosts[0].name.toLowerCase().includes(target.name.toLowerCase())) ||
-                i.name.toLowerCase().includes(target.name.toLowerCase()) ||
-                (i.key_ && i.key_.toLowerCase().includes(target.name.toLowerCase().replace(' ', '')))
+            let matchedItems = items.filter(i =>
+                i.hosts && i.hosts.length > 0 &&
+                i.hosts[0].name.toLowerCase().includes(target.name.toLowerCase())
             );
+
+            // Prioritize real dedicated hosts over generic website/group hosts (e.g. "WEBSITES - GOOGLE")
+            if (matchedItems.length > 0) {
+                const exactHostMatch = matchedItems.filter(i => 
+                    i.hosts[0].name.toLowerCase() === target.name.toLowerCase()
+                );
+                
+                if (exactHostMatch.length > 0) {
+                    matchedItems = exactHostMatch;
+                } else {
+                    const realHostMatch = matchedItems.filter(i => 
+                        !i.hosts[0].name.toLowerCase().includes('websites')
+                    );
+                    if (realHostMatch.length > 0) {
+                        matchedItems = realHostMatch;
+                    }
+                }
+            } else {
+                // Fallback for sub-items match if no host match is found
+                matchedItems = items.filter(i =>
+                    i.name.toLowerCase().includes(target.name.toLowerCase()) ||
+                    (i.key_ && i.key_.toLowerCase().includes(target.name.toLowerCase().replace(' ', '')))
+                );
+            }
 
             if (matchedItems.length > 0) {
                 const secItem = matchedItems.find(i => i.key_ && i.key_.includes('icmppingsec'));
