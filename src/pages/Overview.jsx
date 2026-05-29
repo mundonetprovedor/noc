@@ -411,9 +411,17 @@ const Overview = () => {
   // Custom capacities and thresholds
   const [capacities, setCapacities] = useState(() => {
     const saved = localStorage.getItem('noc_capacities');
-    return saved ? JSON.parse(saved) : {
+    const parsed = saved ? JSON.parse(saved) : null;
+    if (parsed) {
+      if (parsed.speednet === 10000000000) {
+        parsed.speednet = 30000000000;
+        localStorage.setItem('noc_capacities', JSON.stringify(parsed));
+      }
+      return parsed;
+    }
+    return {
       ix: 100000000000, // 100G
-      speednet: 10000000000, // 10G
+      speednet: 30000000000, // 30G
       star1: 10000000000 // 10G
     };
   });

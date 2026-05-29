@@ -93,9 +93,18 @@ class ZabbixService {
         const speednet = getInterfaceTraffic('100GE0/3/1(');
         const star1_v4 = getInterfaceTraffic('100GE0/3/3.562(');
         const star1_v6 = getInterfaceTraffic('100GE0/3/3.563(');
-        const ixce_v4 = getInterfaceTraffic('100GE0/3/3.1193(');
-        const ixce_v6 = getInterfaceTraffic('100GE0/3/3.1194(');
-        const ixce = { rx: ixce_v4.rx + ixce_v6.rx, tx: ixce_v4.tx + ixce_v6.tx };
+        
+        const getTrafficByIds = (ids) => {
+            return ids.reduce((sum, id) => {
+                const item = items.find(i => String(i.itemid) === String(id));
+                return sum + (item ? parseFloat(item.lastvalue || 0) : 0);
+            }, 0);
+        };
+
+        const ixce = {
+            rx: getTrafficByIds([553759, 553768]),
+            tx: getTrafficByIds([553756, 553765])
+        };
         const ixsp_v4 = getInterfaceTraffic('100GE0/3/3.2473(');
         const ixsp_v6 = getInterfaceTraffic('100GE0/3/3.2474(');
         const ixsp = { rx: ixsp_v4.rx + ixsp_v6.rx, tx: ixsp_v4.tx + ixsp_v6.tx };

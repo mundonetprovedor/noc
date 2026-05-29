@@ -27,7 +27,7 @@ import {
 
 const DEFAULT_CONFIGS = {
     'IX.BR (PTT)': { capacity: 20, manualEstimate: null },
-    'SPEEDNET LINK': { capacity: 10, manualEstimate: null },
+    'SPEEDNET LINK': { capacity: 30, manualEstimate: null },
     'STAR1 LINK': { capacity: 10, manualEstimate: null }
 };
 
@@ -39,7 +39,15 @@ const CapacityPlanning = () => {
     // Configurações de links (Capacidade em Gbps e Estimativa Manual em Dias)
     const [linkConfigs, setLinkConfigs] = useState(() => {
         const saved = localStorage.getItem('noc_link_configs');
-        return saved ? JSON.parse(saved) : DEFAULT_CONFIGS;
+        const parsed = saved ? JSON.parse(saved) : null;
+        if (parsed) {
+            if (parsed['SPEEDNET LINK'] && parsed['SPEEDNET LINK'].capacity === 10) {
+                parsed['SPEEDNET LINK'].capacity = 30;
+                localStorage.setItem('noc_link_configs', JSON.stringify(parsed));
+            }
+            return parsed;
+        }
+        return DEFAULT_CONFIGS;
     });
 
     // Sincronizar com LocalStorage
