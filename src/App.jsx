@@ -1,30 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, NavLink, useLocation, Navigate } from 'react-router-dom';
-import { Sun, Moon, Activity, LayoutDashboard, BarChart3, Server, TrendingUp, LogOut } from 'lucide-react';
+import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { Sun, Moon, Activity, LayoutDashboard, BarChart3, Server, TrendingUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import Overview from './pages/Overview';
 import LatencyDashboard from './pages/LatencyDashboard';
 import CustomDashboard from './pages/CustomDashboard';
 import OltHealthDashboard from './pages/OltHealthDashboard';
 import BairrosDashboard from './pages/BairrosDashboard';
 import CapacityPlanning from './pages/CapacityPlanning';
-import Login from './pages/Login';
-import Register from './pages/Register';
-
-/**
- * ProtectedRoute
- * Redireciona para o login se o usuário não estiver autenticado.
- */
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
-
-  if (loading) return null;
-  if (!user) return <Navigate to="/login" replace />;
-
-  return children;
-};
 
 const Clock = () => {
   const [time, setTime] = useState(new Date());
@@ -55,11 +40,6 @@ const Clock = () => {
 
 const Layout = ({ children, theme, setTheme }) => {
   const location = useLocation();
-  const { signOut, user } = useAuth();
-
-  // Não mostrar o layout nas páginas de login/registro
-  const isAuthPage = ['/login', '/register'].includes(location.pathname);
-  if (isAuthPage) return children;
 
   return (
     <div className="dashboard-container">
@@ -106,15 +86,6 @@ const Layout = ({ children, theme, setTheme }) => {
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             >
               {theme === 'dark' ? <Moon size={18} color="#ffffff" /> : <Sun size={18} color="#ff9900" />}
-            </button>
-
-            <button
-              className="glass-card"
-              style={{ ...iconButtonStyle, color: 'var(--danger)' }}
-              onClick={() => signOut()}
-              title="Sair do Sistema"
-            >
-              <LogOut size={18} />
             </button>
           </div>
         </div>
@@ -179,15 +150,12 @@ const App = () => {
       <BrowserRouter>
         <Layout theme={theme} setTheme={setTheme}>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-
-            <Route path="/" element={<ProtectedRoute><Overview /></ProtectedRoute>} />
-            <Route path="/latencia" element={<ProtectedRoute><LatencyDashboard /></ProtectedRoute>} />
-            <Route path="/olts" element={<ProtectedRoute><OltHealthDashboard /></ProtectedRoute>} />
-            <Route path="/bairros" element={<ProtectedRoute><BairrosDashboard /></ProtectedRoute>} />
-            <Route path="/capacity" element={<ProtectedRoute><CapacityPlanning /></ProtectedRoute>} />
-            <Route path="/custom" element={<ProtectedRoute><CustomDashboard /></ProtectedRoute>} />
+            <Route path="/" element={<Overview />} />
+            <Route path="/latencia" element={<LatencyDashboard />} />
+            <Route path="/olts" element={<OltHealthDashboard />} />
+            <Route path="/bairros" element={<BairrosDashboard />} />
+            <Route path="/capacity" element={<CapacityPlanning />} />
+            <Route path="/custom" element={<CustomDashboard />} />
           </Routes>
         </Layout>
       </BrowserRouter>
