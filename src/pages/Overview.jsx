@@ -147,7 +147,7 @@ const TrafficCard = ({ title, value, formatBits, glowColor, icon, logo, capacity
       <button
         onClick={onDetails}
         style={{ background: 'var(--surface-dark)', border: '1px solid var(--glass-border)', color: isHighLoad ? 'var(--danger)' : glowColor, width: '100%', padding: '0.5rem', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '1px', marginTop: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', transition: 'all 0.2s', position: 'relative', zIndex: 1 }}>
-        <Search size={12} /> DETALHES POR SESSÃƒO
+        <Search size={12} /> DETALHES POR SESSÃO
       </button>
     </div>
   );
@@ -273,7 +273,7 @@ const TrafficDetailModal = ({ isOpen, onClose, title, data, formatBits }) => {
           <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <Activity size={24} color="var(--accent-blue)" /> {title}
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.3rem' }}>Detalhamento granular de trÃ¡fego e latÃªncia da sessÃ£o</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.3rem' }}>Detalhamento granular de tráfego e latência da sessão</p>
         </header>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
@@ -294,9 +294,9 @@ const TrafficDetailModal = ({ isOpen, onClose, title, data, formatBits }) => {
         </div>
 
         <div style={{ background: 'var(--surface-low)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)', height: '300px' }}>
-          <h3 style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '1rem', fontWeight: 700 }}>COMPORTAMENTO DA SESSÃƒO (5 MIN)</h3>
+          <h3 style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '1rem', fontWeight: 700 }}>COMPORTAMENTO DA SESSÃO (5 MIN)</h3>
           {loadingHistory ? (
-            <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--text-secondary)' }}>Carregando histÃ³rico...</div>
+            <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--text-secondary)' }}>Carregando histórico...</div>
           ) : (
             <ResponsiveContainer width="100%" height="90%">
               <AreaChart data={modalHistory}>
@@ -322,7 +322,7 @@ const TrafficDetailModal = ({ isOpen, onClose, title, data, formatBits }) => {
 
         <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(0,255,136,0.05)', borderRadius: '8px', border: '1px solid rgba(0,255,136,0.1)' }}>
           <p style={{ fontSize: '0.75rem', color: 'var(--success)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <Activity size={14} /> SESSÃƒO ESTÃVEL: Sem perdas de pacotes ou flutuaÃ§Ãµes crÃ­ticas detectadas no NE40.
+            <Activity size={14} /> SESSÃO ESTÁVEL: Sem perdas de pacotes ou flutuações críticas detectadas no NE40.
           </p>
         </div>
       </motion.div>
@@ -366,12 +366,12 @@ const Overview = () => {
       return false;
     }
 
-    const importantKeywords = ['bgp', 'core', 'sw', 'down', 'queda', 'saturaÃ§Ã£o', 'link', 'timeout', 'perda', 'fail'];
+    const importantKeywords = ['bgp', 'core', 'sw', 'down', 'queda', 'saturação', 'link', 'timeout', 'perda', 'fail'];
     const matchesKeyword = importantKeywords.some(kw =>
       desc.includes(kw) || hostNames.some(h => h.includes(kw))
     );
 
-    // Prioridade Alta (4) ou Desastre (5) tambÃ©m sÃ£o considerados importantes se nÃ£o forem sinais
+    // Prioridade Alta (4) ou Desastre (5) também são considerados importantes se não forem sinais
     return matchesKeyword || incident.priority >= 4;
   };
 
@@ -386,10 +386,10 @@ const Overview = () => {
     const priorities = {
       5: { name: 'Desastre', color: '#ff4d4d', bg: 'rgba(255, 77, 77, 0.1)' },
       4: { name: 'Alta', color: '#ff8c42', bg: 'rgba(255, 140, 66, 0.1)' },
-      3: { name: 'MÃ©dia', color: '#ffb347', bg: 'rgba(255, 179, 71, 0.1)' },
-      2: { name: 'AtenÃ§Ã£o', color: '#ffeb3b', bg: 'rgba(255, 235, 59, 0.1)' },
-      1: { name: 'InformaÃ§Ã£o', color: '#4facfe', bg: 'rgba(79, 172, 254, 0.1)' },
-      0: { name: 'NÃ£o classificada', color: '#9e9e9e', bg: 'rgba(158, 158, 158, 0.1)' }
+      3: { name: 'Média', color: '#ffb347', bg: 'rgba(255, 179, 71, 0.1)' },
+      2: { name: 'Atenção', color: '#ffeb3b', bg: 'rgba(255, 235, 59, 0.1)' },
+      1: { name: 'Informação', color: '#4facfe', bg: 'rgba(79, 172, 254, 0.1)' },
+      0: { name: 'Não classificada', color: '#9e9e9e', bg: 'rgba(158, 158, 158, 0.1)' }
     };
     return priorities[priority] || priorities[0];
   };
@@ -478,7 +478,7 @@ const Overview = () => {
       setOpticalSignals(signals);
       setRecentReboots(reboots);
 
-      // LÃ³gica de Alarme Sonoro
+      // Lógica de Alarme Sonoro
       const currentActiveIds = new Set(allTriggers.map(t => t.triggerid));
 
       allTriggers.forEach(t => {
@@ -490,30 +490,30 @@ const Overview = () => {
         }
       });
 
-      // Limpa IDs que nÃ£o estÃ£o mais ativos para permitir re-anÃºncio se falharem novamente
+      // Limpa IDs que não estão mais ativos para permitir re-anúncio se falharem novamente
       announcedTriggers.current.forEach(id => {
         if (!currentActiveIds.has(id)) {
           announcedTriggers.current.delete(id);
         }
       });
 
-      // Gerenciamento de HistÃ³rico de Incidentes (DetecÃ§Ã£o de ResoluÃ§Ã£o)
+      // Gerenciamento de Histórico de Incidentes (Detecção de Resolução)
       setIncidentHistory(prev => {
         const now = Date.now();
         // Criar um mapa dos incidentes ativos atuais
         const activeIds = new Set(allTriggers.map(t => t.triggerid));
 
-        // Novos incidentes (que nÃ£o estavam no histÃ³rico ou estavam resolvidos)
+        // Novos incidentes (que não estavam no histórico ou estavam resolvidos)
         const newItems = allTriggers.map(t => ({
           ...t,
           status: 'active',
           lastUpdate: now
         }));
 
-        // Manter os resolvidos do histÃ³rico anterior por 5 minutos
+        // Manter os resolvidos do histórico anterior por 5 minutos
         const resolvedItems = prev
           .filter(item => {
-            // Se o item nÃ£o estÃ¡ nos ativos e era do histÃ³rico
+            // Se o item não está nos ativos e era do histórico
             const isJustResolved = item.status === 'active' && !activeIds.has(item.triggerid);
             const wasResolved = item.status === 'resolved';
 
@@ -559,7 +559,7 @@ const Overview = () => {
       setError(null);
     } catch (err) {
       console.error('Failed to fetch data:', err);
-      setError('Erro de conexÃ£o: ' + (err.message || 'Verifique o servidor Zabbix'));
+      setError('Erro de conexão: ' + (err.message || 'Verifique o servidor Zabbix'));
     } finally {
       setLoading(false);
     }
@@ -567,7 +567,7 @@ const Overview = () => {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 5000); // Mais rÃ¡pido para trÃ¡fego (5s)
+    const interval = setInterval(fetchData, 5000); // Mais rápido para tráfego (5s)
     return () => clearInterval(interval);
   }, []);
 
@@ -600,7 +600,7 @@ const Overview = () => {
     return (
       <div className="loading-container" style={{ flexDirection: 'column', gap: '1rem', padding: '2rem', textAlign: 'center' }}>
         <AlertTriangle size={64} color="var(--danger)" />
-        <h2 style={{ color: 'var(--danger)' }}>Erro de ConexÃ£o</h2>
+        <h2 style={{ color: 'var(--danger)' }}>Erro de Conexão</h2>
         <p style={{ maxWidth: '500px', color: 'var(--text-secondary)' }}>{error}</p>
         <button
           onClick={() => window.location.reload()}
@@ -623,7 +623,7 @@ const Overview = () => {
   return (
     <div>
 
-      {/* â”€â”€ LINHA 1: Banner de Status Geral â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── LINHA 1: Banner de Status Geral ─────────────────────────── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -644,21 +644,21 @@ const Overview = () => {
           </motion.div>
           <div>
             <div style={{ fontSize: '1rem', fontWeight: 900, color: stats.criticalTriggers === 0 ? 'var(--success)' : 'var(--danger)', letterSpacing: '1.5px' }}>
-              REDE {stats.criticalTriggers === 0 ? '100% OPERACIONAL' : `COM ${stats.criticalTriggers} INCIDENTE(S) CRÃTICO(S)`}
+              REDE {stats.criticalTriggers === 0 ? '100% OPERACIONAL' : `COM ${stats.criticalTriggers} INCIDENTE(S) CRÍTICO(S)`}
             </div>
             <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-              AtualizaÃ§Ã£o automÃ¡tica a cada 5 segundos â€¢ SW CORE â€“ TEMPO REAL
+              Atualização automática a cada 5 segundos • SW CORE – TEMPO REAL
             </div>
           </div>
         </div>
 
-        {/* KPIs rÃ¡pidos */}
+        {/* KPIs rápidos */}
         <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
           {[
             { label: 'HOSTS ATIVOS', value: stats.totalHosts, color: 'var(--accent-blue)' },
-            { label: 'CRÃTICOS', value: stats.criticalTriggers, color: stats.criticalTriggers > 0 ? 'var(--danger)' : 'var(--success)' },
+            { label: 'CRÍTICOS', value: stats.criticalTriggers, color: stats.criticalTriggers > 0 ? 'var(--danger)' : 'var(--success)' },
             { label: 'WARNINGS', value: triggers.length, color: triggers.length > 0 ? 'var(--warning)' : 'var(--success)' },
-            { label: 'REINÃCIOS (4H)', value: recentReboots.length, color: recentReboots.length > 0 ? 'var(--warning)' : 'var(--success)' },
+            { label: 'REINÍCIOS (4H)', value: recentReboots.length, color: recentReboots.length > 0 ? 'var(--warning)' : 'var(--success)' },
           ].map(kpi => (
             <div key={kpi.label} style={{
               background: 'var(--surface-low)',
@@ -668,12 +668,12 @@ const Overview = () => {
               textAlign: 'center',
               minWidth: '90px'
             }}>
-              <div style={{ fontSize: '1.4rem', fontWeight: 900, color: kpi.color, lineHeight: 1 }}>{kpi.value ?? 'â€“'}</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 900, color: kpi.color, lineHeight: 1 }}>{kpi.value ?? '–'}</div>
               <div style={{ fontSize: '0.58rem', color: 'var(--text-secondary)', fontWeight: 700, letterSpacing: '0.5px', marginTop: '2px' }}>{kpi.label}</div>
             </div>
           ))}
 
-          {/* BotÃ£o Configurar Capacidades â€“ discreto */}
+          {/* Botão Configurar Capacidades – discreto */}
           <button
             onClick={() => setShowConfig(!showConfig)}
             title="Configurar Capacidades"
@@ -695,7 +695,7 @@ const Overview = () => {
         </div>
       </div>
 
-      {/* â”€â”€ Painel de ConfiguraÃ§Ã£o (colapsÃ¡vel) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Painel de Configuração (colapsável) ──────────────────────── */}
       <AnimatePresence>
         {showConfig && (
           <motion.div
@@ -741,7 +741,7 @@ const Overview = () => {
                       onChange={(e) => setIncidentSince(e.target.value)}
                       style={{ background: 'var(--surface-low)', border: '1px solid var(--accent-blue)', padding: '0.6rem 1rem', borderRadius: '8px', color: 'var(--text-primary)', fontSize: '0.85rem', fontWeight: 700, outline: 'none' }}
                     />
-                    <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>Apenas incidentes que iniciaram apÃ³s esta data serÃ£o exibidos. Deixe em branco para todos.</span>
+                    <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)' }}>Apenas incidentes que iniciaram após esta data serão exibidos. Deixe em branco para todos.</span>
                   </div>
 
                   <button
@@ -757,7 +757,7 @@ const Overview = () => {
         )}
       </AnimatePresence>
 
-      {/* â”€â”€ LINHA 2: Cards de TrÃ¡fego dos Uplinks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── LINHA 2: Cards de Tráfego dos Uplinks ───────────────────── */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
         <TrafficCard
           title="TOTAL IX.BR (PTT)"
@@ -797,13 +797,13 @@ const Overview = () => {
         />
       </div>
 
-      {/* â”€â”€ LINHA 3: Grid Principal â€“ Sinais/Ping + Alertas/ReinÃ­cios â”€â”€ */}
+      {/* ── LINHA 3: Grid Principal – Sinais/Ping + Alertas/Reinícios ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
 
-        {/* Coluna Esquerda: Sinais Ã“pticos + Conectividade */}
+        {/* Coluna Esquerda: Sinais Ópticos + Conectividade */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <section className="glass-card" style={{ padding: '1.2rem' }}>
-            <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '1px' }}>SINAIS Ã“PTICOS (LINKS)</h3>
+            <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '1px' }}>SINAIS ÓPTICOS (LINKS)</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface-dark)', padding: '0.8rem', borderRadius: '8px', borderLeft: '3px solid var(--success)' }}>
                 <div>
@@ -878,9 +878,9 @@ const Overview = () => {
                 <RefreshCw size={20} color={recentReboots.length > 0 ? 'var(--warning)' : 'var(--success)'} className={recentReboots.length > 0 ? 'spin-slow' : ''} />
               </div>
               <div>
-                <h4 style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>ReinÃ­cios (4h)</h4>
+                <h4 style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>Reinícios (4h)</h4>
                 <div style={{ fontSize: '1rem', fontWeight: 900, color: 'var(--text-primary)' }}>
-                  {recentReboots.length > 0 ? `${recentReboots.length} dispositivo(s)` : 'Nenhum reinÃ­cio'}
+                  {recentReboots.length > 0 ? `${recentReboots.length} dispositivo(s)` : 'Nenhum reinício'}
                 </div>
               </div>
             </div>
@@ -964,7 +964,7 @@ const Overview = () => {
                       border: trigger.priority > 3 ? '1px solid var(--danger)' : '1px solid var(--warning)',
                       whiteSpace: 'nowrap'
                     }}>
-                      {trigger.priority > 3 ? 'CRÃTICO' : 'WARNING'}
+                      {trigger.priority > 3 ? 'CRÍTICO' : 'WARNING'}
                     </span>
                   </motion.div>
                 ))
@@ -974,11 +974,11 @@ const Overview = () => {
         </div>
       </div>
 
-      {/* â”€â”€ LINHA 4: InventÃ¡rio de Hosts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── LINHA 4: Inventário de Hosts ─────────────────────────────── */}
       <section className="glass-card" style={{ padding: '1.2rem', border: '1px solid var(--glass-border)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
           <h3 style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--text-secondary)', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Server size={15} color="var(--accent-blue)" /> INVENTÃRIO DE HOSTS ({filteredHosts.length})
+            <Server size={15} color="var(--accent-blue)" /> INVENTÁRIO DE HOSTS ({filteredHosts.length})
           </h3>
           <div className="glass-card" style={{ padding: '0.4rem 0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <Search size={14} color="var(--text-secondary)" />
@@ -1023,7 +1023,7 @@ const Overview = () => {
         </div>
       </section>
 
-      {/* Modal de Detalhes de TrÃ¡fego */}
+      {/* Modal de Detalhes de Tráfego */}
       <AnimatePresence>
         {selectedTraffic && (
           <TrafficDetailModal
@@ -1038,5 +1038,7 @@ const Overview = () => {
     </div>
   );
 };
+
+
 
 export default Overview;
