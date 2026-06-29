@@ -147,7 +147,7 @@ const TrafficCard = ({ title, value, formatBits, glowColor, icon, logo, capacity
       <button
         onClick={onDetails}
         style={{ background: 'var(--surface-dark)', border: '1px solid var(--glass-border)', color: isHighLoad ? 'var(--danger)' : glowColor, width: '100%', padding: '0.5rem', borderRadius: '6px', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '1px', marginTop: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.4rem', cursor: 'pointer', transition: 'all 0.2s', position: 'relative', zIndex: 1 }}>
-        <Search size={12} /> DETALHES POR SESSÃO
+        <Search size={12} /> DETALHES POR SESSÃƒO
       </button>
     </div>
   );
@@ -273,7 +273,7 @@ const TrafficDetailModal = ({ isOpen, onClose, title, data, formatBits }) => {
           <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <Activity size={24} color="var(--accent-blue)" /> {title}
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.3rem' }}>Detalhamento granular de tráfego e latência da sessão</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.3rem' }}>Detalhamento granular de trÃ¡fego e latÃªncia da sessÃ£o</p>
         </header>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
@@ -294,9 +294,9 @@ const TrafficDetailModal = ({ isOpen, onClose, title, data, formatBits }) => {
         </div>
 
         <div style={{ background: 'var(--surface-low)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)', height: '300px' }}>
-          <h3 style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '1rem', fontWeight: 700 }}>COMPORTAMENTO DA SESSÃO (5 MIN)</h3>
+          <h3 style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: '1rem', fontWeight: 700 }}>COMPORTAMENTO DA SESSÃƒO (5 MIN)</h3>
           {loadingHistory ? (
-            <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--text-secondary)' }}>Carregando histórico...</div>
+            <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'var(--text-secondary)' }}>Carregando histÃ³rico...</div>
           ) : (
             <ResponsiveContainer width="100%" height="90%">
               <AreaChart data={modalHistory}>
@@ -322,7 +322,7 @@ const TrafficDetailModal = ({ isOpen, onClose, title, data, formatBits }) => {
 
         <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(0,255,136,0.05)', borderRadius: '8px', border: '1px solid rgba(0,255,136,0.1)' }}>
           <p style={{ fontSize: '0.75rem', color: 'var(--success)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <Activity size={14} /> SESSÃO ESTÁVEL: Sem perdas de pacotes ou flutuações críticas detectadas no NE40.
+            <Activity size={14} /> SESSÃƒO ESTÃVEL: Sem perdas de pacotes ou flutuaÃ§Ãµes crÃ­ticas detectadas no NE40.
           </p>
         </div>
       </motion.div>
@@ -366,12 +366,12 @@ const Overview = () => {
       return false;
     }
 
-    const importantKeywords = ['bgp', 'core', 'sw', 'down', 'queda', 'saturação', 'link', 'timeout', 'perda', 'fail'];
+    const importantKeywords = ['bgp', 'core', 'sw', 'down', 'queda', 'saturaÃ§Ã£o', 'link', 'timeout', 'perda', 'fail'];
     const matchesKeyword = importantKeywords.some(kw =>
       desc.includes(kw) || hostNames.some(h => h.includes(kw))
     );
 
-    // Prioridade Alta (4) ou Desastre (5) também são considerados importantes se não forem sinais
+    // Prioridade Alta (4) ou Desastre (5) tambÃ©m sÃ£o considerados importantes se nÃ£o forem sinais
     return matchesKeyword || incident.priority >= 4;
   };
 
@@ -386,10 +386,10 @@ const Overview = () => {
     const priorities = {
       5: { name: 'Desastre', color: '#ff4d4d', bg: 'rgba(255, 77, 77, 0.1)' },
       4: { name: 'Alta', color: '#ff8c42', bg: 'rgba(255, 140, 66, 0.1)' },
-      3: { name: 'Média', color: '#ffb347', bg: 'rgba(255, 179, 71, 0.1)' },
-      2: { name: 'Atenção', color: '#ffeb3b', bg: 'rgba(255, 235, 59, 0.1)' },
-      1: { name: 'Informação', color: '#4facfe', bg: 'rgba(79, 172, 254, 0.1)' },
-      0: { name: 'Não classificada', color: '#9e9e9e', bg: 'rgba(158, 158, 158, 0.1)' }
+      3: { name: 'MÃ©dia', color: '#ffb347', bg: 'rgba(255, 179, 71, 0.1)' },
+      2: { name: 'AtenÃ§Ã£o', color: '#ffeb3b', bg: 'rgba(255, 235, 59, 0.1)' },
+      1: { name: 'InformaÃ§Ã£o', color: '#4facfe', bg: 'rgba(79, 172, 254, 0.1)' },
+      0: { name: 'NÃ£o classificada', color: '#9e9e9e', bg: 'rgba(158, 158, 158, 0.1)' }
     };
     return priorities[priority] || priorities[0];
   };
@@ -478,7 +478,7 @@ const Overview = () => {
       setOpticalSignals(signals);
       setRecentReboots(reboots);
 
-      // Lógica de Alarme Sonoro
+      // LÃ³gica de Alarme Sonoro
       const currentActiveIds = new Set(allTriggers.map(t => t.triggerid));
 
       allTriggers.forEach(t => {
@@ -490,30 +490,30 @@ const Overview = () => {
         }
       });
 
-      // Limpa IDs que não estão mais ativos para permitir re-anúncio se falharem novamente
+      // Limpa IDs que nÃ£o estÃ£o mais ativos para permitir re-anÃºncio se falharem novamente
       announcedTriggers.current.forEach(id => {
         if (!currentActiveIds.has(id)) {
           announcedTriggers.current.delete(id);
         }
       });
 
-      // Gerenciamento de Histórico de Incidentes (Detecção de Resolução)
+      // Gerenciamento de HistÃ³rico de Incidentes (DetecÃ§Ã£o de ResoluÃ§Ã£o)
       setIncidentHistory(prev => {
         const now = Date.now();
         // Criar um mapa dos incidentes ativos atuais
         const activeIds = new Set(allTriggers.map(t => t.triggerid));
 
-        // Novos incidentes (que não estavam no histórico ou estavam resolvidos)
+        // Novos incidentes (que nÃ£o estavam no histÃ³rico ou estavam resolvidos)
         const newItems = allTriggers.map(t => ({
           ...t,
           status: 'active',
           lastUpdate: now
         }));
 
-        // Manter os resolvidos do histórico anterior por 5 minutos
+        // Manter os resolvidos do histÃ³rico anterior por 5 minutos
         const resolvedItems = prev
           .filter(item => {
-            // Se o item não está nos ativos e era do histórico
+            // Se o item nÃ£o estÃ¡ nos ativos e era do histÃ³rico
             const isJustResolved = item.status === 'active' && !activeIds.has(item.triggerid);
             const wasResolved = item.status === 'resolved';
 
@@ -559,7 +559,7 @@ const Overview = () => {
       setError(null);
     } catch (err) {
       console.error('Failed to fetch data:', err);
-      setError('Erro de conexão: ' + (err.message || 'Verifique o servidor Zabbix'));
+      setError('Erro de conexÃ£o: ' + (err.message || 'Verifique o servidor Zabbix'));
     } finally {
       setLoading(false);
     }
@@ -567,7 +567,7 @@ const Overview = () => {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 5000); // Mais rápido para tráfego (5s)
+    const interval = setInterval(fetchData, 5000); // Mais rÃ¡pido para trÃ¡fego (5s)
     return () => clearInterval(interval);
   }, []);
 
@@ -600,7 +600,7 @@ const Overview = () => {
     return (
       <div className="loading-container" style={{ flexDirection: 'column', gap: '1rem', padding: '2rem', textAlign: 'center' }}>
         <AlertTriangle size={64} color="var(--danger)" />
-        <h2 style={{ color: 'var(--danger)' }}>Erro de Conexão</h2>
+        <h2 style={{ color: 'var(--danger)' }}>Erro de ConexÃ£o</h2>
         <p style={{ maxWidth: '500px', color: 'var(--text-secondary)' }}>{error}</p>
         <button
           onClick={() => window.location.reload()}
@@ -622,45 +622,80 @@ const Overview = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-        <button
-          onClick={() => setShowConfig(!showConfig)}
-          style={{
-            background: 'var(--surface-medium)',
-            border: '1px solid var(--glass-border)',
-            color: 'var(--text-primary)',
-            padding: '0.6rem 1.2rem',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.6rem',
-            fontSize: '0.85rem',
-            fontWeight: 700,
-            cursor: 'pointer'
-          }}
-        >
-          <Settings size={18} color={showConfig ? 'var(--accent-blue)' : 'currentColor'} />
-          CONFIGURAR CAPACIDADES
-        </button>
 
-        <div className="glass-card" style={{ padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Search size={18} color="var(--text-secondary)" />
-          <input
-            type="text"
-            placeholder="Buscar hosts..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+      {/* â”€â”€ LINHA 1: Banner de Status Geral â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '1rem 1.5rem',
+        borderRadius: '16px',
+        marginBottom: '1.5rem',
+        border: stats.criticalTriggers === 0 ? '1px solid var(--success)' : '1px solid var(--danger)',
+        background: stats.criticalTriggers === 0 ? 'rgba(0, 255, 157, 0.06)' : 'rgba(255, 71, 87, 0.08)',
+        boxShadow: stats.criticalTriggers === 0 ? '0 0 20px rgba(0,255,157,0.05)' : '0 0 24px rgba(255,71,87,0.1)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <motion.div
+            animate={stats.criticalTriggers > 0 ? { scale: [1, 1.1, 1] } : {}}
+            transition={{ duration: 1, repeat: Infinity }}
+          >
+            <CheckCircle size={24} color={stats.criticalTriggers === 0 ? 'var(--success)' : 'var(--danger)'} />
+          </motion.div>
+          <div>
+            <div style={{ fontSize: '1rem', fontWeight: 900, color: stats.criticalTriggers === 0 ? 'var(--success)' : 'var(--danger)', letterSpacing: '1.5px' }}>
+              REDE {stats.criticalTriggers === 0 ? '100% OPERACIONAL' : `COM ${stats.criticalTriggers} INCIDENTE(S) CRÃTICO(S)`}
+            </div>
+            <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
+              AtualizaÃ§Ã£o automÃ¡tica a cada 5 segundos â€¢ SW CORE â€“ TEMPO REAL
+            </div>
+          </div>
+        </div>
+
+        {/* KPIs rÃ¡pidos */}
+        <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+          {[
+            { label: 'HOSTS ATIVOS', value: stats.totalHosts, color: 'var(--accent-blue)' },
+            { label: 'CRÃTICOS', value: stats.criticalTriggers, color: stats.criticalTriggers > 0 ? 'var(--danger)' : 'var(--success)' },
+            { label: 'WARNINGS', value: triggers.length, color: triggers.length > 0 ? 'var(--warning)' : 'var(--success)' },
+            { label: 'REINÃCIOS (4H)', value: recentReboots.length, color: recentReboots.length > 0 ? 'var(--warning)' : 'var(--success)' },
+          ].map(kpi => (
+            <div key={kpi.label} style={{
+              background: 'var(--surface-low)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '10px',
+              padding: '0.5rem 1rem',
+              textAlign: 'center',
+              minWidth: '90px'
+            }}>
+              <div style={{ fontSize: '1.4rem', fontWeight: 900, color: kpi.color, lineHeight: 1 }}>{kpi.value ?? 'â€“'}</div>
+              <div style={{ fontSize: '0.58rem', color: 'var(--text-secondary)', fontWeight: 700, letterSpacing: '0.5px', marginTop: '2px' }}>{kpi.label}</div>
+            </div>
+          ))}
+
+          {/* BotÃ£o Configurar Capacidades â€“ discreto */}
+          <button
+            onClick={() => setShowConfig(!showConfig)}
+            title="Configurar Capacidades"
             style={{
-              background: 'transparent',
-              border: 'none',
-              color: 'var(--text-primary)',
-              outline: 'none',
-              width: '200px'
+              background: showConfig ? 'rgba(0,210,255,0.1)' : 'var(--surface-low)',
+              border: showConfig ? '1px solid var(--accent-blue)' : '1px solid var(--glass-border)',
+              borderRadius: '10px',
+              padding: '0.6rem',
+              color: showConfig ? 'var(--accent-blue)' : 'var(--text-secondary)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s'
             }}
-          />
+          >
+            <Settings size={18} />
+          </button>
         </div>
       </div>
 
+      {/* â”€â”€ Painel de ConfiguraÃ§Ã£o (colapsÃ¡vel) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <AnimatePresence>
         {showConfig && (
           <motion.div
@@ -706,7 +741,7 @@ const Overview = () => {
                       onChange={(e) => setIncidentSince(e.target.value)}
                       style={{ background: 'var(--surface-low)', border: '1px solid var(--accent-blue)', padding: '0.6rem 1rem', borderRadius: '8px', color: 'var(--text-primary)', fontSize: '0.85rem', fontWeight: 700, outline: 'none' }}
                     />
-                    <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>Apenas incidentes que iniciaram após esta data serão exibidos. Deixe em branco para todos.</span>
+                    <span style={{ fontSize: '0.6rem', color: 'var(--text-secondary)' }}>Apenas incidentes que iniciaram apÃ³s esta data serÃ£o exibidos. Deixe em branco para todos.</span>
                   </div>
 
                   <button
@@ -722,7 +757,8 @@ const Overview = () => {
         )}
       </AnimatePresence>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+      {/* â”€â”€ LINHA 2: Cards de TrÃ¡fego dos Uplinks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
         <TrafficCard
           title="TOTAL IX.BR (PTT)"
           value={traffic?.ix?.total?.rx ? (traffic.ix.total.rx + traffic.ix.total.tx) : 0}
@@ -761,62 +797,13 @@ const Overview = () => {
         />
       </div>
 
-      {/* Proactive Monitoring Header */}
-      <div style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-        <div
-          className="glass-card"
-          style={{
-            flex: 1,
-            padding: '1.2rem',
-            border: recentReboots.length > 0 ? '1px solid var(--warning)' : '1px solid var(--success)',
-            background: recentReboots.length > 0 ? 'rgba(255,153,0,0.05)' : 'rgba(0,255,136,0.05)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem'
-          }}
-        >
-          <div style={{ padding: '0.8rem', background: recentReboots.length > 0 ? 'rgba(255,153,0,0.1)' : 'rgba(0,255,136,0.1)', borderRadius: '12px' }}>
-            <RefreshCw size={24} color={recentReboots.length > 0 ? 'var(--warning)' : 'var(--success)'} className={recentReboots.length > 0 ? 'spin-slow' : ''} />
-          </div>
-          <div>
-            <h4 style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>Monitor de Estabilidade</h4>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
-              <span style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--text-primary)' }}>
-                {recentReboots.length > 0 ? `${recentReboots.length} REINÍCIOS RECENTES` : 'SEM REINÍCIOS (4H)'}
-              </span>
-              {recentReboots.length > 0 && <span style={{ fontSize: '0.75rem', color: 'var(--warning)', fontWeight: 600 }}>PREVENÇÃO ATIVA</span>}
-            </div>
-          </div>
+      {/* â”€â”€ LINHA 3: Grid Principal â€“ Sinais/Ping + Alertas/ReinÃ­cios â”€â”€ */}
+      <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
 
-          {recentReboots.length > 0 && (
-            <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.5rem', overflowX: 'auto', maxWidth: '50%' }}>
-              {recentReboots.map(rb => (
-                <div key={rb.hostid} style={{ background: 'var(--surface-dark)', padding: '0.3rem 0.8rem', borderRadius: '4px', border: '1px solid var(--glass-border)', fontSize: '0.75rem', whiteSpace: 'nowrap' }}>
-                  <strong style={{ color: 'var(--warning)' }}>{rb.hostname}</strong>: {Math.floor(rb.uptime / 60)}m
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="glass-card" style={{ flex: '0 0 300px', padding: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <div style={{ padding: '0.8rem', background: 'rgba(0,210,255,0.1)', borderRadius: '12px' }}>
-            <CheckCircle size={24} color="var(--accent-blue)" />
-          </div>
-          <div>
-            <h4 style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>Score de Prevenção</h4>
-            <div style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--text-primary)' }}>
-              {9.5 - (triggers.length * 0.1) - (recentReboots.length * 0.5) > 0 ? (9.5 - (triggers.length * 0.1) - (recentReboots.length * 0.5)).toFixed(1) : '1.0'}/10
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr 300px', gap: '1.5rem', alignItems: 'start' }}>
-        {/* Left Sidebar: Sinais && Ping */}
+        {/* Coluna Esquerda: Sinais Ã“pticos + Conectividade */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <section className="glass-card" style={{ padding: '1.2rem' }}>
-            <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '1px' }}>SINAIS ÓPTICOS (LINKS)</h3>
+            <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '1px' }}>SINAIS Ã“PTICOS (LINKS)</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface-dark)', padding: '0.8rem', borderRadius: '8px', borderLeft: '3px solid var(--success)' }}>
                 <div>
@@ -862,7 +849,6 @@ const Overview = () => {
 
           <section className="glass-card" style={{ padding: '1.2rem' }}>
             <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '1px' }}>CONECTIVIDADE (PING)</h3>
-            {/* Stubbed data for UI layout */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               {localPings && localPings.length > 0 ? (
                 localPings.map((ping, idx) => (
@@ -880,85 +866,71 @@ const Overview = () => {
               )}
             </div>
           </section>
-        </div>
-        {/* Center Column: Network Status and Inventory */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {/* Status Pills Row */}
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'var(--surface-medium)', padding: '0.6rem 1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
-              <span style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--accent-blue)' }}>{stats.totalHosts}</span>
-              <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 700, letterSpacing: '0.5px' }}>TOTAL ATIVOS</span>
+
+          {/* Monitor de Estabilidade */}
+          <div className="glass-card" style={{
+            padding: '1.2rem',
+            border: recentReboots.length > 0 ? '1px solid var(--warning)' : '1px solid var(--success)',
+            background: recentReboots.length > 0 ? 'rgba(255,153,0,0.05)' : 'rgba(0,255,136,0.05)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <div style={{ padding: '0.6rem', background: recentReboots.length > 0 ? 'rgba(255,153,0,0.1)' : 'rgba(0,255,136,0.1)', borderRadius: '10px' }}>
+                <RefreshCw size={20} color={recentReboots.length > 0 ? 'var(--warning)' : 'var(--success)'} className={recentReboots.length > 0 ? 'spin-slow' : ''} />
+              </div>
+              <div>
+                <h4 style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>ReinÃ­cios (4h)</h4>
+                <div style={{ fontSize: '1rem', fontWeight: 900, color: 'var(--text-primary)' }}>
+                  {recentReboots.length > 0 ? `${recentReboots.length} dispositivo(s)` : 'Nenhum reinÃ­cio'}
+                </div>
+              </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'var(--surface-medium)', padding: '0.6rem 1.5rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
-              <span style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--danger)' }}>{stats.criticalTriggers}</span>
-              <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontWeight: 700, letterSpacing: '0.5px' }}>CRÍTICOS</span>
-            </div>
-            <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.5rem', background: 'var(--surface-low)', padding: '0.3rem', borderRadius: '20px', border: '1px solid var(--glass-border)' }}>
-              <span
-                onClick={() => setActiveCategory('TODOS')}
-                style={{
-                  background: activeCategory === 'TODOS' ? 'var(--nav-active-bg)' : 'transparent',
-                  color: activeCategory === 'TODOS' ? 'var(--nav-active-text)' : 'var(--text-secondary)',
-                  padding: '0.3rem 1.2rem',
-                  borderRadius: '16px',
-                  fontSize: '0.7rem',
-                  fontWeight: activeCategory === 'TODOS' ? 800 : 700,
-                  boxShadow: activeCategory === 'TODOS' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-              >
-                TODOS
-              </span>
-              <span
-                onClick={() => setActiveCategory('BGP')}
-                style={{
-                  background: activeCategory === 'BGP' ? 'var(--nav-active-bg)' : 'transparent',
-                  color: activeCategory === 'BGP' ? 'var(--nav-active-text)' : 'var(--text-secondary)',
-                  padding: '0.3rem 1.2rem',
-                  borderRadius: '16px',
-                  fontSize: '0.7rem',
-                  fontWeight: activeCategory === 'BGP' ? 800 : 700,
-                  boxShadow: activeCategory === 'BGP' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-              >
-                BGP
-              </span>
-              <span
-                onClick={() => setActiveCategory('IX (PTT)')}
-                style={{
-                  background: activeCategory === 'IX (PTT)' ? 'var(--nav-active-bg)' : 'transparent',
-                  color: activeCategory === 'IX (PTT)' ? 'var(--nav-active-text)' : 'var(--text-secondary)',
-                  padding: '0.3rem 1.2rem',
-                  borderRadius: '16px',
-                  fontSize: '0.7rem',
-                  fontWeight: activeCategory === 'IX (PTT)' ? 800 : 700,
-                  boxShadow: activeCategory === 'IX (PTT)' ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-              >
-                IX (PTT)
-              </span>
-            </div>
+            {recentReboots.length > 0 && (
+              <div style={{ marginTop: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                {recentReboots.map(rb => (
+                  <div key={rb.hostid} style={{ background: 'var(--surface-dark)', padding: '0.4rem 0.8rem', borderRadius: '6px', fontSize: '0.75rem' }}>
+                    <strong style={{ color: 'var(--warning)' }}>{rb.hostname}</strong>
+                    <span style={{ color: 'var(--text-secondary)', marginLeft: '6px' }}>uptime {Math.floor(rb.uptime / 60)}m</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-
         </div>
 
-        {/* Right Sidebar: Avisos e Alertas */}
+        {/* Coluna Direita: Alertas Ativos */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          <section className="glass-card" style={{ padding: '1.2rem', border: '1px solid var(--accent-blue)' }}>
+          <section className="glass-card" style={{ padding: '1.2rem', border: triggers.length > 0 ? '1px solid var(--danger)' : '1px solid var(--success)', flex: 1 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent-blue)', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <AlertTriangle size={14} /> QUADRO DE AVISOS ({triggers.length})
+              <h3 style={{ fontSize: '0.85rem', fontWeight: 800, color: triggers.length > 0 ? 'var(--danger)' : 'var(--success)', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <AlertTriangle size={15} /> ALERTAS ATIVOS ({triggers.length})
               </h3>
+              {/* Filtros de categoria */}
+              <div style={{ display: 'flex', gap: '0.3rem', background: 'var(--surface-low)', padding: '0.25rem', borderRadius: '20px', border: '1px solid var(--glass-border)' }}>
+                {['TODOS', 'BGP', 'IX (PTT)'].map(cat => (
+                  <span
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    style={{
+                      background: activeCategory === cat ? 'var(--nav-active-bg)' : 'transparent',
+                      color: activeCategory === cat ? 'var(--nav-active-text)' : 'var(--text-secondary)',
+                      padding: '0.25rem 0.9rem',
+                      borderRadius: '16px',
+                      fontSize: '0.65rem',
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {cat}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="trigger-list" style={{ maxHeight: '400px', overflowY: 'auto' }}>
+            <div className="trigger-list" style={{ maxHeight: '500px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {triggers.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                  Nenhum aviso ativo.
+                <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
+                  <CheckCircle size={40} color="var(--success)" style={{ opacity: 0.3, marginBottom: '0.8rem' }} />
+                  <p style={{ fontSize: '0.85rem', fontWeight: 600 }}>Nenhum alerta ativo no momento.</p>
                 </div>
               ) : (
                 triggers.map(trigger => (
@@ -967,48 +939,91 @@ const Overview = () => {
                     initial={{ x: 20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     className={`trigger-item priority-${trigger.priority}`}
-                    style={{ background: 'var(--surface-low)', padding: '1rem', borderRadius: '8px', marginBottom: '0.8rem', borderLeft: trigger.priority > 3 ? '4px solid var(--danger)' : '4px solid var(--warning)' }}
+                    style={{
+                      background: 'var(--surface-low)',
+                      padding: '0.9rem 1rem',
+                      borderRadius: '10px',
+                      borderLeft: trigger.priority > 3 ? '4px solid var(--danger)' : '4px solid var(--warning)',
+                      display: 'grid',
+                      gridTemplateColumns: '1fr auto',
+                      gap: '0.5rem',
+                      alignItems: 'center'
+                    }}
                   >
-                    <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>{trigger.hosts?.[0]?.name}</div>
-                    <div style={{ fontSize: '0.8rem', marginTop: '4px', color: 'var(--text-secondary)' }}>{trigger.description}</div>
-                    <div style={{ fontSize: '0.65rem', color: 'var(--accent-blue)', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                      <Activity size={10} /> {new Date(trigger.lastchange * 1000).toLocaleString('pt-BR')}
+                    <div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-primary)' }}>{trigger.hosts?.[0]?.name}</div>
+                      <div style={{ fontSize: '0.78rem', marginTop: '3px', color: 'var(--text-secondary)' }}>{trigger.description}</div>
+                      <div style={{ fontSize: '0.62rem', color: 'var(--accent-blue)', marginTop: '6px', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                        <Activity size={10} /> {new Date(trigger.lastchange * 1000).toLocaleString('pt-BR')}
+                      </div>
                     </div>
+                    <span style={{
+                      fontSize: '0.58rem', fontWeight: 900, padding: '0.2rem 0.6rem', borderRadius: '6px',
+                      background: trigger.priority > 3 ? 'rgba(255,71,87,0.15)' : 'rgba(255,153,0,0.15)',
+                      color: trigger.priority > 3 ? 'var(--danger)' : 'var(--warning)',
+                      border: trigger.priority > 3 ? '1px solid var(--danger)' : '1px solid var(--warning)',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {trigger.priority > 3 ? 'CRÃTICO' : 'WARNING'}
+                    </span>
                   </motion.div>
                 ))
               )}
-            </div>
-            <div style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', background: 'var(--surface-dark)', borderRadius: '8px', padding: '0.5rem 1rem' }}>
-              <Search size={14} color="var(--text-secondary)" />
-              <input type="text" placeholder="Buscar um aviso..." style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', padding: '0.3rem', outline: 'none', width: '100%', fontSize: '0.8rem' }} />
-            </div>
-          </section>
-
-          {/* Picos de Tráfego (Mock) */}
-          <section className="glass-card" style={{ padding: '1.2rem', border: '1px solid var(--glass-border)' }}>
-            <h3 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '1rem', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Activity size={14} color="var(--warning)" /> PICOS DE TRÁFEGO (HOJE)
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              <div style={{ background: 'var(--surface-dark)', padding: '0.8rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-blue)' }}>
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)' }}>TOTAL IX.BR (PTT)</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', fontSize: '0.75rem' }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>Máx RX: <strong style={{ color: 'var(--text-primary)' }}>12.4 Gbps</strong></span>
-                  <span style={{ color: 'var(--text-secondary)' }}>Máx TX: <strong style={{ color: 'var(--success)' }}>3.1 Gbps</strong></span>
-                </div>
-              </div>
-              <div style={{ background: 'var(--surface-dark)', padding: '0.8rem', borderRadius: '8px', borderLeft: '3px solid var(--success)' }}>
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)' }}>SPEEDNET LINK</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', fontSize: '0.75rem' }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>Máx RX: <strong style={{ color: 'var(--text-primary)' }}>8.2 Gbps</strong></span>
-                  <span style={{ color: 'var(--text-secondary)' }}>Máx TX: <strong style={{ color: 'var(--success)' }}>1.5 Gbps</strong></span>
-                </div>
-              </div>
             </div>
           </section>
         </div>
       </div>
 
+      {/* â”€â”€ LINHA 4: InventÃ¡rio de Hosts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="glass-card" style={{ padding: '1.2rem', border: '1px solid var(--glass-border)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+          <h3 style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--text-secondary)', letterSpacing: '1px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Server size={15} color="var(--accent-blue)" /> INVENTÃRIO DE HOSTS ({filteredHosts.length})
+          </h3>
+          <div className="glass-card" style={{ padding: '0.4rem 0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Search size={14} color="var(--text-secondary)" />
+            <input
+              type="text"
+              placeholder="Buscar hosts..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', outline: 'none', width: '180px', fontSize: '0.8rem' }}
+            />
+          </div>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '0.6rem', maxHeight: '280px', overflowY: 'auto' }}>
+          {filteredHosts.length === 0 ? (
+            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+              Nenhum host encontrado.
+            </div>
+          ) : (
+            filteredHosts.map(host => (
+              <div
+                key={host.hostid}
+                style={{
+                  background: 'var(--surface-dark)',
+                  borderRadius: '8px',
+                  padding: '0.6rem 0.8rem',
+                  border: '1px solid var(--glass-border)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}
+              >
+                <div style={{
+                  width: '8px', height: '8px', borderRadius: '50%', flexShrink: 0,
+                  background: host.available === '1' ? 'var(--success)' : host.available === '2' ? 'var(--danger)' : 'var(--warning)'
+                }} />
+                <span style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {host.name}
+                </span>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
+
+      {/* Modal de Detalhes de TrÃ¡fego */}
       <AnimatePresence>
         {selectedTraffic && (
           <TrafficDetailModal
@@ -1023,7 +1038,5 @@ const Overview = () => {
     </div>
   );
 };
-
-
 
 export default Overview;

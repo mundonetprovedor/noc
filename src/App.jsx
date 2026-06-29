@@ -8,7 +8,6 @@ import Overview from './pages/Overview';
 import LatencyDashboard from './pages/LatencyDashboard';
 import CustomDashboard from './pages/CustomDashboard';
 import OltHealthDashboard from './pages/OltHealthDashboard';
-import BairrosDashboard from './pages/BairrosDashboard';
 import CapacityPlanning from './pages/CapacityPlanning';
 
 const Clock = () => {
@@ -59,20 +58,17 @@ const Layout = ({ children, theme, setTheme }) => {
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <Clock />
           <nav className="glass-card" style={{ padding: '0.5rem', display: 'flex', gap: '0.3rem', borderRadius: '16px' }}>
-            <NavLink to="/" style={({ isActive }) => navStyle(isActive, 'var(--accent-blue)')}>
+            <NavLink to="/" end style={({ isActive }) => navStyle(isActive, 'var(--accent-blue)')}>
               <LayoutDashboard size={14} /> Visão Geral
             </NavLink>
-            <NavLink to="/bairros" style={({ isActive }) => navStyle(isActive, 'var(--accent-purple)')}>
-              <Activity size={14} /> Saúde Bairros
-            </NavLink>
             <NavLink to="/olts" style={({ isActive }) => navStyle(isActive, 'var(--success)')}>
-              <Server size={14} /> Saúde OLTs
+              <Server size={14} /> OLTs & Equip.
             </NavLink>
             <NavLink to="/latencia" style={({ isActive }) => navStyle(isActive, 'var(--danger)')}>
               <Activity size={14} /> Latência
             </NavLink>
             <NavLink to="/capacity" style={({ isActive }) => navStyle(isActive, 'var(--warning)')}>
-              <TrendingUp size={14} /> Planejamento
+              <TrendingUp size={14} /> Capacidade
             </NavLink>
             <NavLink to="/custom" style={({ isActive }) => navStyle(isActive, 'var(--accent-blue)')}>
               <BarChart3 size={14} /> Sessões Custom
@@ -151,9 +147,8 @@ const App = () => {
         <Layout theme={theme} setTheme={setTheme}>
           <Routes>
             <Route path="/" element={<Overview />} />
-            <Route path="/latencia" element={<LatencyDashboard />} />
             <Route path="/olts" element={<OltHealthDashboard />} />
-            <Route path="/bairros" element={<BairrosDashboard />} />
+            <Route path="/latencia" element={<LatencyDashboard />} />
             <Route path="/capacity" element={<CapacityPlanning />} />
             <Route path="/custom" element={<CustomDashboard />} />
           </Routes>
